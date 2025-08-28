@@ -2,27 +2,56 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-// Create a Zustand store using the create function
+// Zustand store for user state and actions
 const useUserStore = create((set) => ({
-  // Initial state: users array and loading boolean
   users: [],
   loading: false,
 
-  // Action to fetch users from the API
+  // Fetch all users from API
   fetchUsers: async () => {
-    set({ loading: true }); // Set loading to true before fetching
+    set({ loading: true });
     try {
-      // Make GET request to the API
       const response = await axios.get('https://fakestoreapi.com/users');
-      // Update users with the fetched data and set loading to false
       set({ users: response.data, loading: false });
     } catch (error) {
-      // If there's an error, just set loading to false
       set({ loading: false });
-      // Optionally, you can handle the error here (e.g., set an error state)
+    }
+  },
+
+  // Create a new user (POST)
+  createUser: async (userData) => {
+    set({ loading: true });
+    try {
+      const response = await axios.post('https://fakestoreapi.com/users', userData);
+      // Ensure the new user has the same structure as fetched users
+      const newUser = {
+        ...response.data,
+        email: userData.email,
+        username: userData.username,
+        name: userData.name,
+      };
+      set((state) => ({
+        users: [...state.users, newUser],
+        loading: false,
+      }));
+    } catch (error) {
+      set({ loading: false });
+    }
+  },
+
+  // Update an existing user (PUT)
+  updateUser: async (id, userData) => {
+    set({ loading: true });
+    try {
+      const response = await axios.put(`https://fakestoreapi.com/users/${id}`, userData);
+      set((state) => ({
+        users: state.users.map(u => u.id === id ? response.data : u),
+        loading: false,
+      }));
+    } catch (error) {
+      set({ loading: false });
     }
   },
 }));
 
-// Export the custom hook to use the store in components
 export default useUserStore;

@@ -3,17 +3,20 @@ import { useEffect, useState } from 'react';
 import useUserStore from '../store/userStore';
 import axios from 'axios';
 
+// Shows details for a single user, fetched from store or API
 function UserDetail() {
-  // Get the user ID from the URL
-  const { id } = useParams();
-  // Get users from Zustand store
-  const { users } = useUserStore();
-  // Local state for the user
+  const { id } = useParams(); // Get user ID from URL
+  const { users } = useUserStore(); // Get users from Zustand store
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Try to find the user in the store
-    const found = users.find((u) => u.id === parseInt(id));
+    // Only proceed if id is defined and a valid number
+    if (!id || isNaN(Number(id))) {
+      setUser(null);
+      return;
+    }
+    // Try to find the user in the store (compare as string for robustness)
+    const found = users.find((u) => String(u.id) === String(id));
     if (found) {
       setUser(found);
     } else {
@@ -26,10 +29,14 @@ function UserDetail() {
 
   if (!user) return <div>Loading or user not found...</div>;
 
+  // Safely handle missing name object
+  const firstname = user.name?.firstname || '';
+  const lastname = user.name?.lastname || '';
+
   return (
     <div>
       <h2>{user.username}</h2>
-      <p><strong>Name:</strong> {user.name.firstname} {user.name.lastname}</p>
+      <p><strong>Name:</strong> {firstname} {lastname}</p>
       <p><strong>Email:</strong> {user.email}</p>
     </div>
   );

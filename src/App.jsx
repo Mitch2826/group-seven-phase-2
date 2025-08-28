@@ -2,9 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';
 
-
+// The main App component sets up routing for the app
 function App() {
-  // Render the Router, which contains all the routes for the application
   return (
     <Router>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '2rem' }}>
@@ -21,6 +20,4 @@ function App() {
   );
 }
 
-
-// Export the App component as default
 export default App;
