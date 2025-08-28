@@ -1,9 +1,10 @@
+// UserDetail.js - Shows details for a single user, fetched from store or API
+// Uses react-router-dom to get the user ID from the URL
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useUserStore from '../store/userStore';
 import axios from 'axios';
 
-// Shows details for a single user, fetched from store or API
 function UserDetail() {
   const { id } = useParams(); // Get user ID from URL
   const { users } = useUserStore(); // Get users from Zustand store

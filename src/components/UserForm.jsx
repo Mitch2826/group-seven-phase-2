@@ -1,6 +1,7 @@
+// UserForm.js - Reusable form for both creating and editing users
+// Uses props to determine mode and handle submission
 import { useState, useEffect } from 'react';
 
-// Reusable form for both creating and editing users
 function UserForm({ user, onSubmit, onCancel, loading }) {
   // If user exists, prefill fields (edit mode), else empty (create mode)
   const [form, setForm] = useState({
@@ -20,6 +21,14 @@ function UserForm({ user, onSubmit, onCancel, loading }) {
         password: '', // Never prefill password
         firstname: user.name?.firstname || '',
         lastname: user.name?.lastname || '',
+      });
+    } else {
+      setForm({
+        email: '',
+        username: '',
+        password: '',
+        firstname: '',
+        lastname: '',
       });
     }
   }, [user]);

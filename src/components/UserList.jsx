@@ -1,4 +1,5 @@
 // UserList.js - Fetches users from the store and renders a list of UserCard components
+// Handles both creating and editing users with a modal form
 
 import { useEffect, useState } from 'react';
 import useUserStore from '../store/userStore';
@@ -24,7 +25,7 @@ function UserList() {
   return (
     <div>
       <h2>User List</h2>
-      {/* Add User Button */}
+      {/* Add User Button - opens the create modal */}
       <button className="fab" title="Add User" onClick={() => setCreatingUser(true)}>
         +
       </button>
@@ -50,8 +51,8 @@ function UserList() {
             <UserForm
               user={null}
               onSubmit={async data => {
-                await createUser(data);
-                setCreatingUser(false);
+                await createUser(data); // Call create action
+                setCreatingUser(false); // Close form after create
               }}
               onCancel={() => setCreatingUser(false)}
               loading={loading}
