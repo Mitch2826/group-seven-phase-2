@@ -41,7 +41,6 @@ const useUserStore = create((set) => ({
     set({ loading: true, error: null });
     try {
       const response = await axios.put(`https://fakestoreapi.com/users/${id}`, userData);
-      // Merge updated fields for consistency and ensure id is present
       const updatedUser = {
         ...response.data,
         id: response.data.id || id,
