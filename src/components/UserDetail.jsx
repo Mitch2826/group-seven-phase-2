@@ -30,7 +30,7 @@ function UserDetail() {
   const lastname = user.name?.lastname || '';
 
   return (
-    <div>
+    <div className="user-detail-container">
       <button onClick={() => navigate(-1)} style={{ marginBottom: '1em' }}>
         &larr; Back
       </button>

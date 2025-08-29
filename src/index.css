@@ -1,17 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
+
 :root {
-  --primary: #6C63FF;
-  --accent: #FF6B6B;
-  --bg: #F8F9FD;
-  --card: #fff;
+  --primary: #4f8cff;
+  --accent: #ff6b6b;
+  --bg: #181a20;
+  --card: #23242b;
   --radius: 18px;
 }
 
 body {
   background: var(--bg);
   font-family: 'Quicksand', Arial, sans-serif;
-  color: #222;
+  color: #e6e6e6;
   margin: 0;
   padding: 0;
 }
@@ -34,9 +35,10 @@ h1, h2 {
 .user-card {
   background: var(--card);
   border-radius: var(--radius);
-  box-shadow: 0 4px 16px #6c63ff22;
+  box-shadow: 0 4px 16px #000a;
   padding: 2em 1.5em;
   text-align: center;
+  color: #e6e6e6;
 }
 
 button, .fab {
@@ -69,7 +71,7 @@ button:hover, .fab:hover {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: #2228;
+  background: #181a20cc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,10 +80,11 @@ button:hover, .fab:hover {
 .modal-content {
   background: var(--card);
   border-radius: var(--radius);
-  box-shadow: 0 8px 32px #6c63ff33;
+  box-shadow: 0 8px 32px #000a;
   padding: 2em 1.5em;
   min-width: 320px;
   max-width: 95vw;
+  color: #e6e6e6;
 }
 
 .user-form {
@@ -92,13 +95,64 @@ button:hover, .fab:hover {
 
 input {
   padding: 0.8em 1em;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid #333;
   border-radius: var(--radius);
   font-size: 1em;
   margin-bottom: 0.5em;
   transition: border 0.2s;
+  background: #23242b;
+  color: #e6e6e6;
 }
 input:focus {
   border: 1.5px solid var(--primary);
   outline: none;
+  background: #23242b;
+}
+
+.user-detail-container {
+  background: #23242b;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px #000a;
+  max-width: 420px;
+  margin: 3em auto 2em auto;
+  padding: 2.5em 2em 2em 2em;
+  text-align: center;
+  color: #e6e6e6;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1.5px solid #333;
+}
+.user-detail-container:hover {
+  box-shadow: 0 12px 40px #4f8cff55;
+  transform: translateY(-2px) scale(1.01);
+}
+.user-detail-container h2 {
+  color: var(--accent);
+  margin-bottom: 0.7em;
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+.user-detail-container p {
+  font-size: 1.1em;
+  margin: 0.7em 0;
+  color: #bdbdbd;
+}
+.user-detail-container strong {
+  color: var(--primary);
+}
+.user-detail-container button {
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6em 1.5em;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 1.5em;
+  margin-top: 0.5em;
+  transition: background 0.2s, transform 0.2s;
+}
+.user-detail-container button:hover {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scale(1.05);
 }
