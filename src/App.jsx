@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '2rem' }}>
-        <h1>Users</h1>
+        <h1>Fake Store Users</h1>
         <Routes>
           <Route path="/" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetail />} />
